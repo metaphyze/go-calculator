@@ -117,7 +117,12 @@ func calculate(n *node) (float64, error) {
 		if err != nil {
 			return 0, err
 		}
-		return left / right, nil
+
+		if right == 0 && left != 0 {
+			return 0, fmt.Errorf("division by 0")
+		} else {
+			return left / right, nil
+		}
 	case numNode:
 		return n.val, nil
 	case funcNode:
