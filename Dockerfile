@@ -8,10 +8,11 @@ WORKDIR /app
 COPY . .
 
 # Build the Go server
-RUN go mod tidy && go build -o go-calculator server/calculator/main.go 
+RUN go mod tidy && go build -o go-calculator server/calculator/main.go
 
 # Expose the port (default is 8080, but you can change it when running the container)
-EXPOSE 9090
+EXPOSE 8080
+ENV PORT=8080
 
 # Run the server (can override port with env variable)
-CMD ["./go-calculator", "-port=8080"]
+CMD ["./go-calculator"]

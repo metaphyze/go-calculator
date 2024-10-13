@@ -8,6 +8,7 @@ import (
 	"log"
 	"math"
 	"net/http"
+	"os"
 )
 
 // Request and Response structures for JSON
@@ -78,6 +79,12 @@ func main() {
 	// Use flag package to allow user to specify port
 	port := flag.String("port", "8080", "port to listen on")
 	flag.Parse()
+
+	// Check if PORT environment variable is set
+	envPort := os.Getenv("PORT")
+	if envPort != "" {
+		*port = envPort
+	}
 
 	address := ":" + *port
 
